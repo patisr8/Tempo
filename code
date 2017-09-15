@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title> Exemplo 8 </title>
+<!--
+  <link rel="stylehead" type="text/css" href="bootstrap-4.0.0-beta">
+-->
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.min.css">
+  </head>
+    <body>
+      <div class="container">
+  <div class="jumbotron">
+    <h1>Temperaturas</h1>
+    <p>Pesquise pela sua cidade.</p>
+
+    <body style="background-color:gray;">
+</div>
+
+        Cidade:<br>
+        <input type="name" name="cidade" id="cidade">
+        <button type="button" class="btn btn-info" onclick="searchCEP()">Cidade</button>
+
+<h5 id="temp">Temperatura: </h5>
+<h5 id="umidade">Umidade: </h5>
+<h5 id="pressao">Pressão: </h5>
+<h5 id="vento">Velocidade do vento: </h5>
+
+        <script src="jquery-3.2.1.min.js">
+</script>
+       <script>
+function searchCEP(s){
+    var cidade=$("#cidade").val();
+
+    var link="http://api.openweathermap.org/data/2.5/weather?q="+cidade+"&appid=57a78e9ee2e45f6328408b9b37b111c9";
+    $.getJSON(link,
+      function(data){
+        console.log(data);
+        $("#temp").append(data.main.temp);
+        $("#umidade").append(data.main.humidity);
+        $("#pressao").append(data.main.pressure);
+        $("#vento").append(data.main.speed);
+      }
+  );
+
+}
+
+</script>
+    </body>
+  </html>
